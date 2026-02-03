@@ -23,9 +23,9 @@ import com.reown.sample.wallet.domain.account.EthAccountDelegate
 import com.reown.sample.wallet.domain.account.SmartAccountEnabler
 import com.reown.sample.wallet.domain.account.SolanaAccountDelegate
 import com.reown.sample.wallet.domain.account.TONAccountDelegate
+import com.reown.sample.wallet.domain.account.TronAccountDelegate
 import com.reown.sample.wallet.domain.client.Stacks
 import com.reown.sample.wallet.domain.client.TONClient
-//import com.reown.sample.wallet.domain.SolanaAccountDelegate
 import com.reown.sample.wallet.domain.account.SuiAccountDelegate
 import com.reown.sample.wallet.domain.mixPanel
 import com.reown.sample.wallet.domain.notify.NotificationHandler
@@ -55,7 +55,8 @@ class WalletKitApplication : Application() {
         val projectId = BuildConfig.PROJECT_ID
 
         EthAccountDelegate.application = this
-        TONAccountDelegate.application =  this
+        TronAccountDelegate.application = this
+        TONAccountDelegate.application = this
         SolanaAccountDelegate.application = this
         StacksAccountDelegate.application = this
         SuiAccountDelegate.application = this
@@ -65,6 +66,8 @@ class WalletKitApplication : Application() {
         TONClient.init(this.packageName)
 
         SmartAccountEnabler.init(this)
+
+        // Note: WalletConnectPay is now initialized automatically by WalletKit
 
         val appMetaData = Core.Model.AppMetaData(
             name = "Kotlin Wallet",
